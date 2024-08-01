@@ -20,6 +20,7 @@ export default function useOrder() {
 
 
     return {
+        order,
         addItem
     }
 }

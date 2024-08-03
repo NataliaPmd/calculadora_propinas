@@ -3,11 +3,12 @@ import { OrderItem } from "../types";
 import { formatCurrency } from "../helpers";
 
 type OrderTotalProps = {
-    order: OrderItem[],
+    order: OrderItem[]
     tip: number
+    placeOrder: () => void
 }
 
-export default function OrderTotal({order, tip}: OrderTotalProps) {
+export default function OrderTotal({order, tip, placeOrder}: OrderTotalProps) {
     const subTotalOrder = useMemo(() => order.reduce((acc, current) => {
         return acc + (current.price * current.quantity)
     }, 0), [order])
@@ -33,7 +34,14 @@ export default function OrderTotal({order, tip}: OrderTotalProps) {
 
         </div>
 
-        <button></button>
+        <button 
+            className="w-full bg-black p-2 uppercase text-white
+            disabled:opacity-10"
+            disabled={totalOrder === 0}
+            onClick={placeOrder}
+        >
+            Guardar Orden
+        </button>
 
     </>
   )
